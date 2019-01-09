@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Chat</string>
+    <string name="title_activity_login">Login</string>
+    <string name="login_message_email">Email</string>
+    <string name="login_message_password">Password</string>
+    <string name="login_message_button_login">Log in</string>
+    <string name="login_message_button_new_user">Create new user</string>
+    <string name="main_menu_logout">Logout</string>
+    <string name="main_menu_add_contact">Add contact</string>
+    <string name="addcontact_message_add">Add</string>
+    <string name="addcontact_message_cancel">Cancel</string>
+    <string name="addcontact_message_title">Add new contact</string>
+    <string name="addcontact_message_contactadded">Contact successfully added.</string>
+    <string name="contactlist_toolbar_title">Contact list</string>
+    <string name="chat_message">Message</string>
+    <string name="contactlist_remove_message">Do you want to remove this contact?</string>
+    <string name="default_notification_channel_id">Message Channel</string>
+    <string name="pick_image_intent_text">Select application</string>
+</resources>
