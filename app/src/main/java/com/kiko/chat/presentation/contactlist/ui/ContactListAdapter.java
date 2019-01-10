@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.kiko.chat.R;
-import com.kiko.chat.domain.model.Contact;
+import com.kiko.chat.domain.entity.Contact;
 
 import java.util.ArrayList;
 import java.util.List;

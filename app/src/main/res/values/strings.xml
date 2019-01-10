@@ -16,4 +16,8 @@
     <string name="contactlist_remove_message">Do you want to remove this contact?</string>
     <string name="default_notification_channel_id">Message Channel</string>
     <string name="pick_image_intent_text">Select application</string>
+    <string name="personal_information_nickname">Nickname</string>
+    <string name="personal_information_title">Enter your nickname and select photo, please.</string>
+    <string name="activity_personal_info_photo">Select photo</string>
+    <string name="activity_personal_information_save">Save</string>
 </resources>

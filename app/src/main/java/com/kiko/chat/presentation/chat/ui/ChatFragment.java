@@ -14,10 +14,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.kiko.chat.R;
-import com.kiko.chat.domain.model.Message;
+import com.kiko.chat.domain.entity.Message;
 import com.kiko.chat.presentation.base.BaseFragmentWithToolbar;
 import com.kiko.chat.presentation.chat.ChatPresenter;
 import com.kiko.chat.presentation.chat.NoScopeChatKeeper;

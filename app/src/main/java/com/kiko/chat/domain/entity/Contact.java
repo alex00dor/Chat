@@ -1,4 +1,4 @@
-package com.kiko.chat.domain.model;
+package com.kiko.chat.domain.entity;
 
 public class Contact {
     String email;

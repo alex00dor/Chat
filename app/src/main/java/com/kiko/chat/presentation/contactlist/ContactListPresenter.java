@@ -1,6 +1,6 @@
 package com.kiko.chat.presentation.contactlist;
 
-import com.kiko.chat.domain.model.Contact;
+import com.kiko.chat.domain.entity.Contact;
 import com.kiko.chat.presentation.base.BasePresenter;
 import com.kiko.chat.presentation.base.BaseView;
 

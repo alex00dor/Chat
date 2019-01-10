@@ -2,7 +2,7 @@ package com.kiko.chat.presentation.chat;
 
 import android.net.Uri;
 
-import com.kiko.chat.domain.model.Message;
+import com.kiko.chat.domain.entity.Message;
 import com.kiko.chat.presentation.base.BasePresenter;
 import com.kiko.chat.presentation.base.BaseView;
 

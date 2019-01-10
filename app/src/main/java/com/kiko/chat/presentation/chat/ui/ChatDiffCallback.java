@@ -2,7 +2,7 @@ package com.kiko.chat.presentation.chat.ui;
 
 import android.support.v7.util.DiffUtil;
 
-import com.kiko.chat.domain.model.Message;
+import com.kiko.chat.domain.entity.Message;
 
 import java.util.List;
 

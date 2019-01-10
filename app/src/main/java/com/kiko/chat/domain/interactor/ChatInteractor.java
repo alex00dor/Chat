@@ -1,6 +1,6 @@
 package com.kiko.chat.domain.interactor;
 
-import com.kiko.chat.domain.model.Message;
+import com.kiko.chat.domain.entity.Message;
 import com.kiko.chat.domain.repository.ChatRepository;
 
 import java.util.List;

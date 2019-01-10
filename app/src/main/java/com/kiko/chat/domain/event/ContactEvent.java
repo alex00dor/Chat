@@ -1,6 +1,6 @@
 package com.kiko.chat.domain.event;
 
-import com.kiko.chat.domain.model.Contact;
+import com.kiko.chat.domain.entity.Contact;
 
 public class ContactEvent {
     private Contact contact;

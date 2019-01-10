@@ -31,6 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/bottom"
+            tools:listitem="@layout/fragment_chat_item"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
         <android.support.v7.widget.LinearLayoutCompat

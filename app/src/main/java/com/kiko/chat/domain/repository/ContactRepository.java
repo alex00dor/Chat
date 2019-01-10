@@ -1,7 +1,7 @@
 package com.kiko.chat.domain.repository;
 
 import com.kiko.chat.domain.event.ContactEvent;
-import com.kiko.chat.domain.model.Contact;
+import com.kiko.chat.domain.entity.Contact;
 
 import java.util.List;
 

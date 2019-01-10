@@ -1,9 +1,8 @@
 package com.kiko.chat.domain.repository;
 
-import com.kiko.chat.domain.model.Message;
+import com.kiko.chat.domain.entity.Message;
 
 import java.util.List;
-import java.util.Map;
 
 import io.reactivex.Completable;
 import io.reactivex.Flowable;

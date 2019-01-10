@@ -16,7 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.kiko.chat.R;
-import com.kiko.chat.domain.model.Message;
+import com.kiko.chat.domain.entity.Message;
 import com.kiko.chat.domain.util.DateUtil;
 import com.kiko.chat.libs.base.ImageLoader;
 

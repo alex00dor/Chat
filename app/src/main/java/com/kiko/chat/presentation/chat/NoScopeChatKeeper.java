@@ -1,6 +1,6 @@
 package com.kiko.chat.presentation.chat;
 
-import com.kiko.chat.domain.model.Message;
+import com.kiko.chat.domain.entity.Message;
 
 import java.util.ArrayList;
 import java.util.List;

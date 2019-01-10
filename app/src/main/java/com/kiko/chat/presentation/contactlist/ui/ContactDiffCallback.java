@@ -2,7 +2,7 @@ package com.kiko.chat.presentation.contactlist.ui;
 
 import android.support.v7.util.DiffUtil;
 
-import com.kiko.chat.domain.model.Contact;
+import com.kiko.chat.domain.entity.Contact;
 
 import java.util.List;
 

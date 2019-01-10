@@ -1,19 +1,13 @@
 package com.kiko.chat.datasource.network.firestore;
 
-import android.support.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.Source;
 import com.kiko.chat.datasource.network.FirebaseHelper;
 import com.kiko.chat.domain.event.ContactEvent;
-import com.kiko.chat.domain.model.Contact;
+import com.kiko.chat.domain.entity.Contact;
 import com.kiko.chat.domain.repository.ContactRepository;
 
 import java.util.ArrayList;

@@ -89,6 +89,33 @@ public class FirebaseAuthSource implements AuthorizationRepository {
     }
 
     @Override
+    public Completable updateUserInfo(String nickname, String photoUrl) {
+        return Completable.create(emitter -> {
+
+            if(nickname == null){
+                emitter.onError(new Throwable("Nickname cannot be empty."));
+                return;
+            }
+
+            if(photoUrl == null){
+                emitter.onError(new Throwable("Select photo, please."));
+                return;
+            }
+
+            if(helper.getAuthUserEmail() != null){
+                Map<String, Object> data = new HashMap<>();
+                data.put("nickname", nickname);
+                data.put("photoUrl", photoUrl);
+                helper.getCurrentUserDocument().set(data, SetOptions.merge())
+                        .addOnCompleteListener(task -> emitter.onComplete())
+                        .addOnFailureListener(emitter::onError);
+            }else{
+                emitter.onError(new Throwable("No current auth user"));
+            }
+        });
+    }
+
+    @Override
     public void initConnection() {
         helper.getConnectionReference().addValueEventListener(new ValueEventListener() {
             @Override
@@ -109,7 +136,6 @@ public class FirebaseAuthSource implements AuthorizationRepository {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
     }

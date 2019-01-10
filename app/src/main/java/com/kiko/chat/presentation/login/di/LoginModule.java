@@ -1,8 +1,10 @@
-package com.kiko.chat.presentation.login;
+package com.kiko.chat.presentation.login.di;
 
 import com.kiko.chat.di.scope.PerActivity;
 import com.kiko.chat.domain.interactor.NewUserInteractor;
 import com.kiko.chat.domain.interactor.UserAuthorizationInteractor;
+import com.kiko.chat.presentation.login.LoginPresenter;
+import com.kiko.chat.presentation.login.LoginPresenterImpl;
 import com.kiko.chat.presentation.login.ui.LoginActivity;
 
 import dagger.Binds;

@@ -24,6 +24,10 @@ public class UserAuthorizationInteractor {
         return repository.sendNotificationKey(key);
     }
 
+    public Completable updateUserInformation(String nickname, String photoUrl){
+        return repository.updateUserInfo(nickname, photoUrl);
+    }
+
     public Completable logout(){
         return repository.logout();
     }

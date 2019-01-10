@@ -10,7 +10,7 @@ import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.firestore.Source;
 import com.google.firebase.firestore.WriteBatch;
 import com.kiko.chat.datasource.network.FirebaseHelper;
-import com.kiko.chat.domain.model.Message;
+import com.kiko.chat.domain.entity.Message;
 import com.kiko.chat.domain.repository.ChatRepository;
 
 import java.util.ArrayList;
@@ -42,7 +42,7 @@ public class FirestoreChatSource implements ChatRepository {
                 return;
             }
 
-            com.kiko.chat.datasource.network.firestore.model.Message message = new com.kiko.chat.datasource.network.firestore.model.Message();
+            Message message = new Message();
             message.setMassage(msg);
             message.setRead(false);
             message.setReceiver(receiver);

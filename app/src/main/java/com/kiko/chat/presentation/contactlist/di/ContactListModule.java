@@ -1,8 +1,10 @@
-package com.kiko.chat.presentation.contactlist;
+package com.kiko.chat.presentation.contactlist.di;
 
 import com.kiko.chat.di.scope.PerFragment;
 import com.kiko.chat.domain.interactor.ContactInteractor;
-import com.kiko.chat.presentation.addcontact.AddContactModule;
+import com.kiko.chat.presentation.addcontact.di.AddContactModule;
+import com.kiko.chat.presentation.contactlist.ContactListPresenter;
+import com.kiko.chat.presentation.contactlist.ContactListPresenterImpl;
 import com.kiko.chat.presentation.contactlist.ui.ContactListAdapter;
 import com.kiko.chat.presentation.contactlist.ui.ContactListFragment;
 

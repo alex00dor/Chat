@@ -1,10 +1,13 @@
-package com.kiko.chat.presentation.chat;
+package com.kiko.chat.presentation.chat.di;
 
 import com.kiko.chat.di.scope.PerFragment;
 import com.kiko.chat.domain.interactor.ChatInteractor;
 import com.kiko.chat.domain.interactor.StorageInteractor;
-import com.kiko.chat.domain.model.Message;
+import com.kiko.chat.domain.entity.Message;
 import com.kiko.chat.libs.base.ImageLoader;
+import com.kiko.chat.presentation.chat.ChatPresenter;
+import com.kiko.chat.presentation.chat.ChatPresenterImpl;
+import com.kiko.chat.presentation.chat.NoScopeChatKeeper;
 import com.kiko.chat.presentation.chat.ui.ChatAdapter;
 import com.kiko.chat.presentation.chat.ui.ChatFragment;
 

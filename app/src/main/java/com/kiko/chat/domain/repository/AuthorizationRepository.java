@@ -8,5 +8,6 @@ public interface AuthorizationRepository {
     Completable checkCurrentSession();
     Completable logout();
     Completable sendNotificationKey(String key);
+    Completable updateUserInfo(String nickname, String photoUrl);
     void initConnection();
 }

@@ -1,14 +1,16 @@
-package com.kiko.chat.presentation.main;
+package com.kiko.chat.presentation.main.di;
 
 import com.kiko.chat.di.scope.PerActivity;
 import com.kiko.chat.di.scope.PerFragment;
 import com.kiko.chat.domain.interactor.UserAuthorizationInteractor;
-import com.kiko.chat.presentation.addcontact.AddContactModule;
+import com.kiko.chat.presentation.addcontact.di.AddContactModule;
 import com.kiko.chat.presentation.addcontact.ui.AddContactDialogFragment;
-import com.kiko.chat.presentation.chat.ChatModule;
+import com.kiko.chat.presentation.chat.di.ChatModule;
 import com.kiko.chat.presentation.chat.ui.ChatFragment;
-import com.kiko.chat.presentation.contactlist.ContactListModule;
+import com.kiko.chat.presentation.contactlist.di.ContactListModule;
 import com.kiko.chat.presentation.contactlist.ui.ContactListFragment;
+import com.kiko.chat.presentation.main.MainPresenter;
+import com.kiko.chat.presentation.main.MainPresenterImpl;
 import com.kiko.chat.presentation.main.ui.MainActivity;
 
 import dagger.Binds;

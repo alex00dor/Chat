@@ -1,7 +1,9 @@
-package com.kiko.chat.presentation.addcontact;
+package com.kiko.chat.presentation.addcontact.di;
 
 import com.kiko.chat.di.scope.PerFragment;
 import com.kiko.chat.domain.interactor.ContactInteractor;
+import com.kiko.chat.presentation.addcontact.AddContactPresenter;
+import com.kiko.chat.presentation.addcontact.AddContactPresenterImpl;
 import com.kiko.chat.presentation.addcontact.ui.AddContactDialogFragment;
 
 import dagger.Module;
