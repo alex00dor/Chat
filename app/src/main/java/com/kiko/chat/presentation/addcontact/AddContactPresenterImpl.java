@@ -4,6 +4,8 @@ import com.kiko.chat.domain.interactor.ContactInteractor;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class AddContactPresenterImpl implements AddContactPresenter {
@@ -19,10 +21,12 @@ public class AddContactPresenterImpl implements AddContactPresenter {
 
     @Override
     public void addContact(String email) {
-        view.hideInput();
-        view.showProgress();
         disposables.add(interactor.addContact(email)
                 .subscribeOn(Schedulers.io())
+                .doOnSubscribe(disposable -> {
+                    view.hideInput();
+                    view.showProgress();
+                })
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(() -> view.contactAdded(),
                         throwable -> {

@@ -26,22 +26,22 @@ public class LoginPresenterImpl implements LoginPresenter, LifecycleObserver {
 
     @Override
     public void checkForAuthenticatedUser() {
-        mView.disableInputs();
         disposables.add(sessionInteractor.checkCurrentSession()
                 .subscribeOn(Schedulers.io())
+                .doOnSubscribe(disposable -> mView.disableInputs())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(() -> mView.navigateToMainScreen(),
-                        throwable -> {
-                            mView.enableInputs();
-                        }));
+                        throwable -> mView.enableInputs()));
     }
 
     @Override
     public void validateLogin(String email, String password) {
-        mView.showProgress();
-        mView.disableInputs();
         disposables.add(sessionInteractor.login(email, password)
                 .subscribeOn(Schedulers.io())
+                .doOnSubscribe(disposable -> {
+                    mView.showProgress();
+                    mView.disableInputs();
+                })
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(() -> {
                             mView.hideProgress();
@@ -56,10 +56,12 @@ public class LoginPresenterImpl implements LoginPresenter, LifecycleObserver {
 
     @Override
     public void registerNewUser(final String email, final String password) {
-        mView.showProgress();
-        mView.disableInputs();
         disposables.add(newUserInteractor.newUser(email, password)
                 .subscribeOn(Schedulers.io())
+                .doOnSubscribe(disposable -> {
+                    mView.showProgress();
+                    mView.disableInputs();
+                })
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(() -> {
                             mView.hideProgress();

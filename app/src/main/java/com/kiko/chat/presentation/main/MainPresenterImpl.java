@@ -54,9 +54,9 @@ public class MainPresenterImpl implements MainPresenter, LifecycleObserver {
 
     @Override
     public void logout() {
-        view.showProgress();
         disposables.add(sessionInteractor.logout()
                 .subscribeOn(Schedulers.io())
+                .doOnSubscribe(disposable -> view.showProgress())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(() -> {
                             view.hideProgress();

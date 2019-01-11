@@ -53,9 +53,11 @@ public class ChatPresenterImpl implements ChatPresenter, LifecycleObserver {
 
     @Override
     public void loadImage(Uri uri) {
-        view.showProgress();
         disposables.add(storageInteractor.loadImage(uri)
                 .subscribeOn(Schedulers.io())
+                .doOnSubscribe(disposable -> {
+                    view.showProgress();
+                })
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(s -> {
                     view.hideProgress();
