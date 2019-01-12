@@ -21,6 +21,7 @@ public class NotificationHelper extends ContextWrapper {
     public static final String MESSAGE_CHANNEL = "Message Channel";
     public static final int MESSAGE_NOTIFY_ID = 1;
     public static final int GROUP_MESSAGE_NOTIFY_ID = 0;
+
     private int lastGroupID = -1;
     private Map<String, Integer> messageGroupKeeper = new HashMap<>();
 

@@ -3,6 +3,8 @@ package com.kiko.chat.domain.entity;
 public class Contact {
     String email;
     boolean online;
+    String nickName = "";
+    String photoUrl = "";
     String lastMessage = "";
     long lastMessageTime = 0;
 
@@ -28,6 +30,22 @@ public class Contact {
 
     public void setOnline(boolean online) {
         this.online = online;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 
     public String getLastMessage() {

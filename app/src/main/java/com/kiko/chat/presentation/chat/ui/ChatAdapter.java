@@ -72,7 +72,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
             viewHolder.imageContent.setVisibility(View.VISIBLE);
             viewHolder.txtMessage.setVisibility(View.GONE);
 
-            imageLoader.loadImage(message.getMassage(), viewHolder.imageContent);
+            imageLoader.loadImage(message.getMassage(), viewHolder.imageContent, 1000);
         } else {
             viewHolder.txtMessage.setVisibility(View.VISIBLE);
             viewHolder.imageContent.setVisibility(View.GONE);

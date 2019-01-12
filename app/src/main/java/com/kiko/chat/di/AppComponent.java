@@ -5,7 +5,7 @@ import android.app.Application;
 import com.kiko.chat.ChatApplication;
 import com.kiko.chat.domain.interactor.di.InteractorModule;
 import com.kiko.chat.datasource.network.di.NetworkModule;
-import com.kiko.chat.libs.LibsModule;
+import com.kiko.chat.libs.di.LibsModule;
 
 import javax.inject.Singleton;
 

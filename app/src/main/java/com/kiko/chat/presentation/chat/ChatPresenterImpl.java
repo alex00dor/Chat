@@ -8,9 +8,11 @@ import android.net.Uri;
 import com.kiko.chat.domain.interactor.ChatInteractor;
 import com.kiko.chat.domain.interactor.StorageInteractor;
 
+import io.reactivex.SingleSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 public class ChatPresenterImpl implements ChatPresenter, LifecycleObserver {
@@ -40,11 +42,7 @@ public class ChatPresenterImpl implements ChatPresenter, LifecycleObserver {
 
     @Override
     public void sendMessage(String msg) {
-        sendMsg(msg, false);
-    }
-
-    private void sendMsg(String msg, boolean isImage){
-        disposables.add(chatInteractor.sendMessage(msg, receiver, sender, isImage)
+        disposables.add(chatInteractor.sendMessage(msg, receiver, sender, false)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(() -> {
@@ -54,18 +52,15 @@ public class ChatPresenterImpl implements ChatPresenter, LifecycleObserver {
     @Override
     public void loadImage(Uri uri) {
         disposables.add(storageInteractor.loadImage(uri)
+                .flatMapCompletable(s -> chatInteractor.sendMessage(s, receiver, sender, true))
                 .subscribeOn(Schedulers.io())
-                .doOnSubscribe(disposable -> {
-                    view.showProgress();
-                })
+                .doOnSubscribe(disposable -> view.showProgress())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(s -> {
-                    view.hideProgress();
-                    sendMsg(s, true);
-                }, throwable -> {
-                    view.hideProgress();
-                    view.showError(throwable.getLocalizedMessage());
-                }));
+                .subscribe(() -> view.hideProgress(),
+                        throwable -> {
+                            view.hideProgress();
+                            view.showError(throwable.getLocalizedMessage());
+                        }));
     }
 
 

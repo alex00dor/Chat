@@ -10,25 +10,30 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnCreateContextMenuListener;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.kiko.chat.R;
 import com.kiko.chat.domain.entity.Contact;
+import com.kiko.chat.libs.base.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.ViewHolder> {
 
     private List<Contact> contacts;
     private OnItemClickListener clickListener;
+    private ImageLoader imageLoader;
 
-    public ContactListAdapter(List<Contact> contacts, OnItemClickListener clickListener) {
+    public ContactListAdapter(List<Contact> contacts, OnItemClickListener clickListener, ImageLoader imageLoader) {
         this.contacts = contacts;
         this.clickListener = clickListener;
+        this.imageLoader = imageLoader;
     }
 
     @NonNull
@@ -43,12 +48,21 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
         Contact contact = contacts.get(i);
         viewHolder.setClickListener(contact, clickListener);
 
-        String email = contact.getEmail();
+        String nickname = contact.getNickName();
+        String photoUrl = contact.getPhotoUrl();
         boolean online = contact.isOnline();
         String status = online ? "online" : "offline";
         int color = online ? Color.BLUE : Color.RED;
 
-        viewHolder.txtUser.setText(email);
+        if(nickname.equals("")){
+            nickname = contact.getEmail();
+        }
+
+        if(!photoUrl.equals("")){
+            imageLoader.loadImage(photoUrl, viewHolder.avatar);
+        }
+
+        viewHolder.txtUser.setText(nickname);
         viewHolder.txtStatus.setText(status);
         viewHolder.txtStatus.setTextColor(color);
         viewHolder.txtMessage.setSingleLine(true);
@@ -115,6 +129,8 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
         TextView txtMessage;
         @BindView(R.id.cardView)
         CardView cardView;
+        @BindView(R.id.avatar)
+        CircleImageView avatar;
 
         OnItemClickListener listener;
         Contact contact;

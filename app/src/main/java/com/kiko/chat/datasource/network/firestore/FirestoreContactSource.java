@@ -65,18 +65,27 @@ public class FirestoreContactSource implements ContactRepository {
     }
 
     @Override
-    public Single<List<Contact>> getCachedContacts(){
+    public Single<List<Contact>> getCachedContacts() {
         return Single.create(emitter -> helper.getCurrentUserContactCollection()
                 .get(Source.CACHE)
                 .addOnCompleteListener(task -> {
                     List<DocumentSnapshot> documentSnapshotList = Objects.requireNonNull(task.getResult()).getDocuments();
                     List<Contact> result = new ArrayList<>();
-                    for(DocumentSnapshot doc: documentSnapshotList){
+                    for (DocumentSnapshot doc : documentSnapshotList) {
                         Contact contact = new Contact(doc.getId(), false);
                         contact.setLastMessage(doc.getString("lastMessage"));
-                        if(doc.getLong("lastTimeMessage") != null) {
+                        if (doc.getLong("lastTimeMessage") != null) {
                             contact.setLastMessageTime(doc.getLong("lastTimeMessage"));
                         }
+
+                        if (doc.getString("nickname") != null) {
+                            contact.setNickName(doc.getString("nickname"));
+                        }
+
+                        if (doc.getString("photoUrl") != null) {
+                            contact.setPhotoUrl(doc.getString("photoUrl"));
+                        }
+
                         result.add(contact);
                     }
                     emitter.onSuccess(result);
@@ -98,22 +107,41 @@ public class FirestoreContactSource implements ContactRepository {
                         QueryDocumentSnapshot document = dc.getDocument();
                         switch (dc.getType()) {
                             case ADDED:
-                                if(document.getBoolean("online") == null)
+                                if (document.getBoolean("online") == null)
                                     continue;
+
                                 Contact contact = new Contact(document.getId(), document.getBoolean("online"));
                                 contact.setLastMessage(document.getString("lastMessage"));
-                                if(document.getLong("lastTimeMessage") != null) {
+                                if (document.getLong("lastTimeMessage") != null) {
                                     contact.setLastMessageTime(document.getLong("lastTimeMessage"));
                                 }
+
+                                if (document.getString("nickname") != null) {
+                                    contact.setNickName(document.getString("nickname"));
+                                }
+
+                                if (document.getString("photoUrl") != null) {
+                                    contact.setPhotoUrl(document.getString("photoUrl"));
+                                }
+
                                 emitter.onNext(new ContactEvent(contact, ContactEvent.ACTION_CONTACT_ADD));
                                 break;
                             case MODIFIED:
-                                if(document.getBoolean("online") == null)
+                                if (document.getBoolean("online") == null)
                                     continue;
+
                                 Contact contactModified = new Contact(document.getId(), document.getBoolean("online"));
                                 contactModified.setLastMessage(document.getString("lastMessage"));
-                                if(document.getLong("lastTimeMessage") != null) {
+                                if (document.getLong("lastTimeMessage") != null) {
                                     contactModified.setLastMessageTime(document.getLong("lastTimeMessage"));
+                                }
+
+                                if (document.getString("nickname") != null) {
+                                    contactModified.setNickName(document.getString("nickname"));
+                                }
+
+                                if (document.getString("photoUrl") != null) {
+                                    contactModified.setPhotoUrl(document.getString("photoUrl"));
                                 }
                                 emitter.onNext(new ContactEvent(contactModified, ContactEvent.ACTION_CONTACT_CHANGED));
                                 break;

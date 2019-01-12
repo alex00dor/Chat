@@ -159,6 +159,12 @@ public class ContactListFragment extends BaseFragmentWithToolbar implements Cont
             return false;
         });
 
+        menuItems.add(R.id.updateInfo);
+        menuClicks.add(item -> {
+            activity.navigateToPersonalInfo();
+            return false;
+        });
+
         return new FragmentToolbar.Builder()
                 .withId(R.id.toolbar)
                 .withTitle(R.string.contactlist_toolbar_title)

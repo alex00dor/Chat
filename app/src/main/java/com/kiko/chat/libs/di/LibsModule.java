@@ -1,9 +1,10 @@
-package com.kiko.chat.libs;
+package com.kiko.chat.libs.di;
 
 import android.content.Context;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
+import com.kiko.chat.libs.GlideImageLoader;
 import com.kiko.chat.libs.base.ImageLoader;
 
 import javax.inject.Singleton;

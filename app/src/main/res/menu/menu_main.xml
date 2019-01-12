@@ -3,6 +3,9 @@
     <item android:id="@+id/addcontact"
         android:title="@string/main_menu_add_contact"/>
 
+    <item android:id="@+id/updateInfo"
+        android:title="@string/main_menu_update_personal_info"/>
+
     <item
         android:id="@+id/logout"
         android:title="@string/main_menu_logout" />

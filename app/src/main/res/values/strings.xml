@@ -20,4 +20,5 @@
     <string name="personal_information_title">Enter your nickname and select photo, please.</string>
     <string name="activity_personal_info_photo">Select photo</string>
     <string name="activity_personal_information_save">Save</string>
+    <string name="main_menu_update_personal_info">Settings</string>
 </resources>

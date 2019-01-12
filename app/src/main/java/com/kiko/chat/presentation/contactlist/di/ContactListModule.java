@@ -2,6 +2,7 @@ package com.kiko.chat.presentation.contactlist.di;
 
 import com.kiko.chat.di.scope.PerFragment;
 import com.kiko.chat.domain.interactor.ContactInteractor;
+import com.kiko.chat.libs.base.ImageLoader;
 import com.kiko.chat.presentation.addcontact.di.AddContactModule;
 import com.kiko.chat.presentation.contactlist.ContactListPresenter;
 import com.kiko.chat.presentation.contactlist.ContactListPresenterImpl;
@@ -32,8 +33,8 @@ public abstract class ContactListModule {
 
     @PerFragment
     @Provides
-    static ContactListAdapter provideContactListAdapter(ContactListFragment fragment) {
-        return new ContactListAdapter(new ArrayList<>(), fragment);
+    static ContactListAdapter provideContactListAdapter(ContactListFragment fragment, ImageLoader imageLoader) {
+        return new ContactListAdapter(new ArrayList<>(), fragment, imageLoader);
     }
 
 }

@@ -19,12 +19,31 @@ public class GlideImageLoader implements ImageLoader {
 
     @Override
     public void loadImage(String url, ImageView imageView) {
+        RequestOptions options = new RequestOptions();
+        load(url, imageView, options);
+    }
+
+    @Override
+    public void loadImage(String url, ImageView imageView, int width, int height) {
+        RequestOptions options = new RequestOptions();
+        options = options.override(width, height);
+        load(url, imageView, options);
+    }
+
+    @Override
+    public void loadImage(String url, ImageView imageView, int size) {
+        RequestOptions options = new RequestOptions();
+        options = options.override(size);
+        load(url, imageView, options);
+    }
+
+    private void load(String url, ImageView view, RequestOptions options){
         manager.load(url)
                 .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.ALL))
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .thumbnail((float) 0.15)
                 .apply(RequestOptions.placeholderOf(R.drawable.spinner))
-                .apply(RequestOptions.overrideOf(1000))
-                .into(imageView);
+                .apply(options)
+                .into(view);
     }
 }

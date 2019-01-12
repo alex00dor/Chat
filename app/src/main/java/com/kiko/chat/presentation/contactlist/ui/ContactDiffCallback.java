@@ -34,7 +34,9 @@ public class ContactDiffCallback extends DiffUtil.Callback {
     @Override
     public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
         return oldList.get(oldItemPosition).getLastMessage().equals(newList.get(newItemPosition).getLastMessage())
-                && oldList.get(oldItemPosition).isOnline() == newList.get(newItemPosition).isOnline();
+                && oldList.get(oldItemPosition).isOnline() == newList.get(newItemPosition).isOnline()
+                && oldList.get(oldItemPosition).getNickName().equals(newList.get(newItemPosition).getNickName())
+                && oldList.get(oldItemPosition).getPhotoUrl().equals(newList.get(newItemPosition).getPhotoUrl());
     }
 
 }

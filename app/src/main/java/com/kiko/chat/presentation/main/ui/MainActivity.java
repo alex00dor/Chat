@@ -14,6 +14,7 @@ import com.kiko.chat.presentation.chat.ui.ChatFragment;
 import com.kiko.chat.presentation.contactlist.ui.ContactListFragment;
 import com.kiko.chat.presentation.login.ui.LoginActivity;
 import com.kiko.chat.presentation.main.MainPresenter;
+import com.kiko.chat.presentation.personalinfo.ui.PersonalInfoActivity;
 
 import javax.inject.Inject;
 
@@ -86,6 +87,10 @@ public class MainActivity extends BaseActivity implements MainPresenter.View {
         fragmentTransaction.commit();
     }
 
+    public void navigateToPersonalInfo(){
+        Intent intent = new Intent(this, PersonalInfoActivity.class);
+        startActivity(intent);
+    }
 
     public void logout(){
         presenter.logout();
