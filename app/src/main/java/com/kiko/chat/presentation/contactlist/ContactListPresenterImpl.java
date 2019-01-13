@@ -27,13 +27,13 @@ public class ContactListPresenterImpl implements ContactListPresenter, Lifecycle
     @Override
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     public void resume() {
-        if(initCache)
+        if (initCache)
             subscribeOnContacts();
         else
             initCache();
     }
 
-    void initCache(){
+    void initCache() {
         disposables.add(contactInteractor.getCachedContacts()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -44,7 +44,7 @@ public class ContactListPresenterImpl implements ContactListPresenter, Lifecycle
                 }));
     }
 
-    private void subscribeOnContacts(){
+    private void subscribeOnContacts() {
         disposables.add(contactInteractor.getContacts()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -95,7 +95,7 @@ public class ContactListPresenterImpl implements ContactListPresenter, Lifecycle
         disposables.add(contactInteractor.removeContact(email)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(() -> {},
-                throwable -> onError(throwable.getLocalizedMessage())));
+                .subscribe(() -> {
+                }, throwable -> onError(throwable.getLocalizedMessage())));
     }
 }

@@ -1,11 +1,8 @@
 package com.kiko.chat.libs.di;
 
-import android.content.Context;
-
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestManager;
-import com.kiko.chat.libs.GlideImageLoader;
+import com.kiko.chat.libs.PicassoImageLoader;
 import com.kiko.chat.libs.base.ImageLoader;
+import com.squareup.picasso.Picasso;
 
 import javax.inject.Singleton;
 
@@ -17,14 +14,13 @@ public abstract class LibsModule {
 
     @Singleton
     @Provides
-    static ImageLoader provideGlideImageLoader(RequestManager manager){
-        return new GlideImageLoader(manager);
+    static ImageLoader providePicassoImageLoader(Picasso picasso){
+        return new PicassoImageLoader(picasso);
     }
-
 
     @Singleton
     @Provides
-    static RequestManager provideRequestManager(Context context){
-        return Glide.with(context);
+    static Picasso providePiccaso(){
+        return Picasso.get();
     }
 }

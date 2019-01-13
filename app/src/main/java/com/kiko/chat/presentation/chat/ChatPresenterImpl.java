@@ -8,11 +8,8 @@ import android.net.Uri;
 import com.kiko.chat.domain.interactor.ChatInteractor;
 import com.kiko.chat.domain.interactor.StorageInteractor;
 
-import io.reactivex.SingleSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 public class ChatPresenterImpl implements ChatPresenter, LifecycleObserver {
@@ -45,8 +42,7 @@ public class ChatPresenterImpl implements ChatPresenter, LifecycleObserver {
         disposables.add(chatInteractor.sendMessage(msg, receiver, sender, false)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(() -> {
-                }, t -> onError(t.getLocalizedMessage())));
+                .subscribe(() -> {}, t -> onError(t.getLocalizedMessage())));
     }
 
     @Override
@@ -55,12 +51,10 @@ public class ChatPresenterImpl implements ChatPresenter, LifecycleObserver {
                 .flatMapCompletable(s -> chatInteractor.sendMessage(s, receiver, sender, true))
                 .subscribeOn(Schedulers.io())
                 .doOnSubscribe(disposable -> view.showProgress())
+                .doAfterTerminate(() -> view.hideProgress())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(() -> view.hideProgress(),
-                        throwable -> {
-                            view.hideProgress();
-                            view.showError(throwable.getLocalizedMessage());
-                        }));
+                .subscribe(() -> {},
+                        throwable -> view.showError(throwable.getLocalizedMessage())));
     }
 
 

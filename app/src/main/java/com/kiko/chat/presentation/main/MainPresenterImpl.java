@@ -57,14 +57,9 @@ public class MainPresenterImpl implements MainPresenter, LifecycleObserver {
         disposables.add(sessionInteractor.logout()
                 .subscribeOn(Schedulers.io())
                 .doOnSubscribe(disposable -> view.showProgress())
+                .doAfterTerminate(() -> view.hideProgress())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(() -> {
-                            view.hideProgress();
-                            view.navigateToLoginScreen();
-                        },
-                        throwable -> {
-                            view.hideProgress();
-                            onError(throwable.getLocalizedMessage());
-                        }));
+                .subscribe(() -> view.navigateToLoginScreen(),
+                        throwable -> onError(throwable.getLocalizedMessage())));
     }
 }

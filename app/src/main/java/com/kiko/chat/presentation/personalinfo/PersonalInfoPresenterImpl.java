@@ -10,6 +10,7 @@ import com.kiko.chat.domain.interactor.UserAuthorizationInteractor;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.functions.Action;
 import io.reactivex.schedulers.Schedulers;
 
 public class PersonalInfoPresenterImpl implements PersonalInfoPresenter, LifecycleObserver {
@@ -30,14 +31,10 @@ public class PersonalInfoPresenterImpl implements PersonalInfoPresenter, Lifecyc
         disposables.add(userInteractor.updateUserInformation(nickname, photoUrl)
                 .subscribeOn(Schedulers.io())
                 .doOnSubscribe(disposables -> view.showProgress())
+                .doAfterTerminate(() -> view.hideProgress())
                 .subscribeOn(AndroidSchedulers.mainThread())
-                .subscribe(() -> {
-                    view.hideProgress();
-                    view.personalInfoSaved();
-                }, throwable -> {
-                    view.hideProgress();
-                    onError(throwable.getLocalizedMessage());
-                }));
+                .subscribe(() -> view.personalInfoSaved(),
+                        throwable -> onError(throwable.getLocalizedMessage())));
     }
 
     @Override
@@ -45,14 +42,10 @@ public class PersonalInfoPresenterImpl implements PersonalInfoPresenter, Lifecyc
         disposables.add(storageInteractor.loadImage(uri)
                 .subscribeOn(Schedulers.io())
                 .doOnSubscribe(disposable -> view.showProgress())
+                .doAfterTerminate(() -> view.hideProgress())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(s -> {
-                    view.hideProgress();
-                    view.setPhotoUrl(s);
-                }, throwable -> {
-                    view.hideProgress();
-                    view.showError(throwable.getLocalizedMessage());
-                }));
+                .subscribe(s -> view.setPhotoUrl(s),
+                        throwable -> view.showError(throwable.getLocalizedMessage())));
     }
 
     @Override

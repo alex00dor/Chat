@@ -42,16 +42,13 @@ public class LoginPresenterImpl implements LoginPresenter, LifecycleObserver {
                     mView.showProgress();
                     mView.disableInputs();
                 })
+                .doAfterTerminate(() -> {
+                    mView.hideProgress();
+                    mView.enableInputs();
+                })
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(() -> {
-                            mView.hideProgress();
-                            mView.navigateToMainScreen();
-                        },
-                        throwable -> {
-                            mView.hideProgress();
-                            mView.enableInputs();
-                            onError(throwable.getLocalizedMessage());
-                        }));
+                .subscribe(() -> mView.navigateToMainScreen(), throwable -> onError(throwable.getLocalizedMessage()))
+        );
     }
 
     @Override
@@ -62,16 +59,13 @@ public class LoginPresenterImpl implements LoginPresenter, LifecycleObserver {
                     mView.showProgress();
                     mView.disableInputs();
                 })
+                .doAfterTerminate(() -> {
+                    mView.hideProgress();
+                    mView.enableInputs();
+                })
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(() -> {
-                            mView.hideProgress();
-                            validateLogin(email, password);
-                        },
-                        throwable -> {
-                            mView.hideProgress();
-                            mView.enableInputs();
-                            onError(throwable.getLocalizedMessage());
-                        }));
+                .subscribe(() -> validateLogin(email, password), throwable -> onError(throwable.getLocalizedMessage()))
+        );
     }
 
     @Override
